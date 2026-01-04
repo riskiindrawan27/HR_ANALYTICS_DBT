@@ -143,7 +143,26 @@ dbt deps
 ```
 
 4. **Konfigurasi `profiles.yml`:**
-Pastikan file `profiles.yml` (biasanya di `~/.dbt/profiles.yml`) sudah dikonfigurasi untuk DuckDB.
+
+Buat atau edit file `profiles.yml` di direktori `~/.dbt/` (Windows: `C:\Users\<username>\.dbt\profiles.yml`) dengan konfigurasi berikut:
+
+```yaml
+hr_analytics:
+  outputs:
+    dev:
+      type: duckdb
+      path: ./ae_test_case.duckdb
+      threads: 4
+
+  target: dev
+```
+
+**Penjelasan konfigurasi:**
+- `hr_analytics`: Nama profile yang harus sesuai dengan `profile` di `dbt_project.yml`
+- `type: duckdb`: Menggunakan DuckDB sebagai database engine
+- `path`: Lokasi file database DuckDB (relatif terhadap direktori proyek)
+- `threads`: Jumlah thread untuk eksekusi paralel
+- `target: dev`: Environment default yang akan digunakan
 
 ### Menjalankan Pipeline
 
