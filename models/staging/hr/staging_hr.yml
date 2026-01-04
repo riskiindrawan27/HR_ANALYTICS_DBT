@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_raw_data__daftar_pegawai
+    description: "Staging table for raw daftar_pegawai data"
+    columns:
+      - name: nik_karyawan
+        tests: [not_null]
+      - name: hire_date
+        tests: [not_null]

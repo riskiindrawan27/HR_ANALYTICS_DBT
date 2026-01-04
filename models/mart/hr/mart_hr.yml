@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: mart_hr__headcount_change
+    description: "Monthly headcount movement and cumulative active headcount at month-end."
+    columns:
+      - name: tanggal
+        description: "Month (first day of month)"
+        tests: [not_null, unique]
+
+      - name: num_resign
+        description: "Monthly resignations (negative value)"
+        tests: [not_null]
+
+      - name: num_new_hires
+        description: "Monthly hires"
+        tests: [not_null]
+
+      - name: cum_change
+        description: "Active headcount at month end"
+        tests: [not_null]
+
+      - name: net_change
+        description: "num_new_hires + num_resign"
+        tests: [not_null]
+
+      - name: bouncing_hires
+        description: "Hired and resigned in the same month"
+        tests: [not_null]
+
+      - name: previous_cum_change
+        description: "Previous month headcount (lag)"
+
+      - name: dim
+        description: "Time dimension"
+        tests: [not_null]
+
+  - name: mart_hr__retention_rate
+    description: "Monthly retention rate based on previous headcount and resignations."
+    columns:
+      - name: tanggal
+        tests: [not_null, unique]
+      - name: previous_cum_change
+      - name: retaining
+        tests: [not_null]
+      - name: retention_rate
+      - name: dim
+        tests: [not_null]

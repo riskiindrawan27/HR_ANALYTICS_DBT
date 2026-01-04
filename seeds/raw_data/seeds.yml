@@ -1,0 +1,13 @@
+version: 2
+
+seeds:
+  - name: daftar_pegawai
+    description: "Raw employee master list loaded from CSV seed"
+    config:
+      null_marker: "nan"
+      column_types:
+        NIK_KARYAWAN: varchar
+        PERUSAHAAN: varchar
+        HIRE_DATE: varchar
+        TERMINATION_DATE: varchar
+        STATUS: varchar
